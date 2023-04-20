@@ -39,4 +39,25 @@ public class ContactoServlet extends HttpServlet{
         printWriter.print("</html>");
         printWriter.close();
     }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException{
+        String nombre = req.getParameter("nombre");
+        String apellido = req.getParameter("apellido");
+        String email = req.getParameter("email");
+        String descripcion = req.getParameter("descripcion");
+        
+        resp.setContentType("text/html");
+        PrintWriter pw = resp.getWriter();
+        pw.print("<html>");
+        pw.print("<body>");
+        pw.print("<h1>Datos de Contacto </h1>");
+        pw.print("<p> Nombre: " + nombre +"</p>");
+        pw.print("<p> Apellido: " + apellido +"</p>");
+        pw.print("<p> Email: " + email +"</p>");
+        pw.print("<p> Descripcion: " + descripcion +"</p>");
+        pw.print("</body>");
+        pw.print("</html>");
+        pw.close();
+    }
 }
