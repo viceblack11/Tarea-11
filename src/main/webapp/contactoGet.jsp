@@ -1,8 +1,4 @@
-<%-- 
-    Document   : contactoGet
-    Created on : Apr 15, 2023, 4:55:02 PM
-    Author     : JuaN
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
