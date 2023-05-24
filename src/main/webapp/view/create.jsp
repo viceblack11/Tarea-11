@@ -31,6 +31,9 @@
         <h1>Pagina de Registro de Contacto</h1>
         <div class="container">
 
+            
+            
+            
         <form action="<%= request.getContextPath() %>/ContactoServlet?action=create" method="POST">
             <div class="mb-3">
             <label for="nombre" class="form-label"> Nombre:</label> <input type="text" name="nombre">
