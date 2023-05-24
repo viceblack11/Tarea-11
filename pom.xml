@@ -28,6 +28,16 @@
     <artifactId>mysql-connector-java</artifactId>
     <version>8.0.33</version>
 </dependency>
+<dependency>
+    <groupId>org.webjars.npm</groupId>
+    <artifactId>bootstrap</artifactId>
+    <version>5.3.0-alpha3</version>
+</dependency>
+<dependency>
+    <groupId>org.webjars.npm</groupId>
+    <artifactId>popperjs__core</artifactId>
+    <version>2.11.7</version>
+</dependency>
     </dependencies>
     
     <build>

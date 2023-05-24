@@ -4,6 +4,7 @@
  */
 package com.acme;
 
+import com.acme.model.Contacto;
 import com.vicente.dao.ContactoDAO;
 import com.vicente.dao.ContactoDAOImpl;
 import jakarta.servlet.RequestDispatcher;
@@ -31,20 +32,13 @@ public class ContactoServlet extends HttpServlet{
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        String nombre = req.getParameter("nombre");
-        String emailId = req.getParameter("emailId");
-        String telefono = req.getParameter("telefono");
-        String descripcion = req.getParameter("descripcion");
-        
-
+       this.procesarSolicitud(req, resp);
+   
     }
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException{
-        String nombre = req.getParameter("nombre");
-        String apellido = req.getParameter("apellido");
-        String email = req.getParameter("email");
-        String descripcion = req.getParameter("descripcion");
+     this.procesarSolicitud(req, resp);
     }
     protected void procesarSolicitud( HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
          switch(request.getParameter("action")){
@@ -52,7 +46,7 @@ public class ContactoServlet extends HttpServlet{
                 // this.list(request,response);
                 break;
              case "create":
-                 //this.create(request,response);
+                 this.create(request,response);
                  break;
              case "read":
                //  this.read(request,response);
@@ -64,7 +58,7 @@ public class ContactoServlet extends HttpServlet{
                //  this.delete(request,response);
                  break;
                   case "showRegister":
-               //  this.showRegister(request,response);
+                this.showRegister(request,response);
                  break;
                   case "index":
                 this.index(request,response);
@@ -80,6 +74,28 @@ public class ContactoServlet extends HttpServlet{
              RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
              dispatcher.forward(request,response);
 }
-    
+       
+       private void showRegister (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/view/create.jsp");
+    dispatcher.forward(request,response);
     }
+       private void create (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    //Recoger los datos desde la peticion
+           String name = request.getParameter("nombre");
+  String apellido = request.getParameter("nombre");
+  String email = request.getParameter("email");
+  String descrip = request.getParameter("descripcion");
+  //Crear el objeto que se envia a la base de datos
+  Contacto objContacto = new Contacto();
+  objContacto.setNombre(name);
+   objContacto.setApellido(apellido);
+    objContacto.setEmail(email);
+     objContacto.setDescripcion (descrip);
+     
+     contactoDao.insert(objContacto);
+     
+    //Redieccionar al index
+    this.index(request,response);
+    }
+}
 
